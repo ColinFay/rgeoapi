@@ -4,7 +4,7 @@ Title: Get information from https://geo.api.gouv.fr/
 Version: 0.1
 Date: 2016-05-30
 Author: Colin FAY
-Maintainer: Colin FAY <contact@colinfay.met>
+Maintainer: Colin FAY <contact@colinfay.me>
 Description: This package gets informations about names, postal code, INSEE
     code, surface, lat and long of french cities.
 License: GNU GPL
