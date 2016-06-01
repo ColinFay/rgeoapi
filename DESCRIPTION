@@ -9,5 +9,5 @@ Description: This package gets informations about names, postal code, INSEE
     code, surface, lat and long of french cities.
 License: GNU GPL
 LazyData: TRUE
-Depends: httr
+Depends: httr, rjson
 RoxygenNote: 5.0.1

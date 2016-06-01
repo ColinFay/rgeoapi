@@ -4,6 +4,11 @@
 #'@param an INSEE Code 
 #'@return a data.frame with names, postal code, INSEE code, surface, lat and long. 
 #'@export
+#'@examples
+#' getByIC(codeInsee = "88160") 
+#' getByIC(codeInsee = "31555")
+#' library(plyr)
+#' ldply(c("88160", "60057"), getByIC)
 
 getByIC <- function(codeInsee) {
   if(nchar(codeInsee) == 4) {
@@ -44,7 +49,7 @@ getByIC <- function(codeInsee) {
           lat <- coord[2]
           long <- coord[1]
         }
-        identity <- data.frame(name = city, codeInsee = codeInsee, codePostal = codesPostaux, surface = surface, lat=lat, long=long)
+        identity <- data.frame(name = city, codeInsee = codeInsee, codePostal = codesPostaux, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
       return(identity)
     }
   } else {

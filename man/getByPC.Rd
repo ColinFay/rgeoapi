@@ -15,4 +15,7 @@ a data.frame with names, postal code, INSEE code, surface, lat and long.
 \description{
 Takes a french postal code, return a data.frame with name, postal code, INSEE code, surface, lat and long of the city.
 }
+\examples{
+getByPC("88000")
+}
 

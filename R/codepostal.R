@@ -4,6 +4,8 @@
 #'@param an postal code 
 #'@return a data.frame with names, postal code, INSEE code, surface, lat and long. 
 #'@export
+#'@examples
+#'getByPC("88000")
 
 getByPC <- function(codePostal) {
   if(nchar(codePostal) == 4) {
@@ -47,7 +49,7 @@ getByPC <- function(codePostal) {
           lat <- coord[2]
           long <- coord[1]
         }
-        objbis <- data.frame(name = city, codeInsee = codeInsee, codesPostaux = codesPostaux, surface = surface, lat=lat, long=long)
+        objbis <- data.frame(name = city, codeInsee = codeInsee, codesPostaux = codesPostaux, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
         identity <- rbind(identity,objbis)
       }
       return(identity)

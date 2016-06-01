@@ -2,17 +2,21 @@
 % Please edit documentation in R/ville.R
 \name{getByName}
 \alias{getByName}
-\title{Get By Name}
+\title{Get by name}
 \usage{
 getByName(Name)
 }
 \arguments{
-\item{a}{name, as characters}
+\item{Name}{the name of a commune}
 }
 \value{
 a data.frame with names, postal code, INSEE code, surface, lat and long.
 }
 \description{
-Takes the name of a french city, return a data.frame with name, postal code, INSEE code, surface, lat and long of the city.
+Takes a the name of a French commune and returns name, code Insee, postal code, area, latitude and longitude
+}
+\examples{
+getByName("Épinal")
+
 }
 

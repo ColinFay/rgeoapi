@@ -15,4 +15,10 @@ a data.frame with names, postal code, INSEE code, surface, lat and long.
 \description{
 Takes an INSEE Code, return a data.frame with name, postal code, INSEE code, surface, lat and long of the city.
 }
+\examples{
+getByIC(codeInsee = "88160") 
+getByIC(codeInsee = "31555")
+library(plyr)
+ldply(c("88160", "60057"), getByIC)
+}
 
