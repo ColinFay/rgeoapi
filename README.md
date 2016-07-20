@@ -59,7 +59,7 @@ All the functions are constructed using this terminology : AByB.
 Takes the latitude and longitude of a city, returns a data.frame with name, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
 
 ```{r}
-ComByCoord(lat = 48.11023, lon = -1.678872) 
+ComByCoord(lat = "48.11023", lon = "-1.678872") 
 ```
 
 ###DepByName 
