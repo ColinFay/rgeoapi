@@ -1,55 +1,85 @@
 # rgeoapi
-This package requests informations from the french GéoAPI inside R — https://api.beta.gouv.fr/api/geoapi.html
+This package requests informations from the french GéoAPI inside R — https://api.gouv.fr/api/geoapi.html
 
 ##GeoAPI 
 
-Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, [GéoAPI](https://api.beta.gouv.fr/api/geoapi.html) is designed to make requests on the french geographic database.
+Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GéoAPI](https://api.gouv.fr/api/geoapi.html) API is a JSON interface designed to make requests on the french geographic database.
 
-rgeoapi was developped to facilitate your geographic projects by giving you acces to theses informations straight inside R.
+rgeoapi was developped to facilitate your geographic projects by giving you access to these informations straight inside R. With `rgeoapi`, you can get any coordinate, size and population of a french city, to be used in your maps. 
 
+For an optimal compatibility, all the names (especially outputs) used in this package are the same as the ones used in the GéoAPI. Please note that this package works only with french cities.
 
 ##Install rgeoapi
 
 Install this package directly in R : 
 
-```{r, eval=FALSE, warning = FALSE, message=FALSE, error=FALSE}
+```{r}
 devtools::install_github("ColinFay/rgeoapi")
 ```
 
 ##How rgeoapi works
 
-This first version works with three functions. They all return a dataframe with these variables : 
-* `name` : name(s) of the city
-* `codeInsee`: the Insee Code
-* `codesPostaux` : the postal code(s)
-* `surface` : the city surface
-* `lat`and `long`: the GPS coordinates of the city
+The version 1.0.0 works with eleven functions. Which are :  
 
-###getByPC 
+* `ComByCode` Get City by INSEE Code
 
-This function takes a french postal code, returns a dataframe.
+* `ComByCoord` Get City by Coordinates
+
+* `ComByDep` Get Cities by Department
+
+* `ComByName` Get City by Name
+
+* `ComByPostal` Get City by Postal Code
+
+* `ComByReg` Get Cities by Region
+
+* `DepByCode` Get Department by INSEE Code
+
+* `DepByName` Get Department by Name
+
+* `DepByReg` Get Departments by Region
+
+* `RegByCode` Get Region by INSEE Code
+
+* `RegByName` Get Region by Name
+
+##How the functions are constructed
+
+In the [GéoAPI](https://api.gouv.fr/api/geoapi.html), you can request for "Commune", "Département" or "Région". 
+All the functions are constructed using this terminology : AByB.
+
+* A being the output you need -- Com for "Commune" (refering to french cities), Dep for Département (for Department) and Reg for Région. 
+
+* B being the request parameter -- Code for INSEE Code, Coord for Coordinates (WGS-84), Dep for Department, Name for name, Postal for Postal Code and Reg for Region.
+
+##Some examples 
+
+###ComByCoord 
+
+Takes the latitude and longitude of a city, returns a data.frame with name, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
 
 ```{r}
-getByPC(35000)
+ComByCoord(lat = 48.11023, lon = -1.678872) 
 ```
 
-###getByName 
+###DepByName 
 
-This function takes a name, and returns total and partial matches of this name.
+This function takes a character string with the name of the department, and returns a data.frame with name, INSEE code, and region code. Partial matches are possible. In that case, pertinence scores are given.
 
 ```{r}
-getByName("Rennes")
+DepByName("morbihan")
+DepByName("Il")
 ```
 
-###getByIC
+###RegByCode
 
-The same as getByPC, but with the INSEE Code
+This function takes an INSEE Code, returns a data.frame with name and region code.
 
 ```{r}
-getByIC(35238)
+RegByCode(53)
 ```
 
 ###French Tutorial & contact
 
-A french tutorial on [my website](http://colinfay.me/rgeoapi/).
+A french tutorial on [my website](http://colinfay.me/rgeoapi-v1/).
 Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
