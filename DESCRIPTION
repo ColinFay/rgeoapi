@@ -1,13 +1,12 @@
 Package: rgeoapi
 Type: Package
-Title: Get information from https://geo.api.gouv.fr/
-Version: 0.1
-Date: 2016-05-30
+Title: Get informations from https://api.gouv.fr/api/geoapi.html
+Version: 1.0.0
+Date: 2016-07-20
 Author: Colin FAY
 Maintainer: Colin FAY <contact@colinfay.me>
-Description: This package gets informations about names, postal code, INSEE
-    code, surface, lat and long of french cities.
+Description: This package is designed to get informations about french "Communes", "Departements" and "Region" available on the GEOAPI.
 License: GNU GPL
 LazyData: TRUE
-Depends: httr, rjson
+Imports: httr, rjson
 RoxygenNote: 5.0.1
