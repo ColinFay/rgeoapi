@@ -4,12 +4,14 @@
 \alias{ComByName}
 \title{Get City by Name}
 \usage{
-ComByName(nom, boost = FALSE)
+ComByName(nom, boost = FALSE, postal = FALSE)
 }
 \arguments{
 \item{nom}{a character string with the name of the city.}
 
 \item{boost}{a TRUE or FALSE. Default is FALSE. If TRUE, typographic pertinence score will be weighted by population.}
+
+\item{postal}{wether or not to include postal codes. Default is FALSE.}
 }
 \value{
 Returns a data.frame with name(s), INSEE code(s), postal code(s), INSEE department code(s), INSEE region code(s), population (approx), surface(s) (in hectares), lat and long (WGS-84).
@@ -23,6 +25,7 @@ Takes a the name of a French city, returns a data.frame with the available value
 \examples{
 ComByName("Brest")
 ComByName("Vitré", boost = TRUE)
+ComByName("Rennes", postal = TRUE)
 ComByName("Lo")
 }
 
