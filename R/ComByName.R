@@ -13,7 +13,7 @@
 #'ComByName("Vitré", boost = TRUE)
 #'ComByName("Lo")
 
-ComByName <- function(nom, boost = FALSE) {
+ComByName <- function(nom, boost = FALSE, postal = FALSE) {
   nom <- chartr("éèëêÉÈËÊàÀçÇôoœoöÔOŒOÖuûùüúUÛÙÜÚîïÎÏ", "eeeeEEEEaAcCoooooOOOOOuuuuuUUUUUIIII", nom)
   if(postal){
     requete <- "nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre"
@@ -89,11 +89,11 @@ ComByName <- function(nom, boost = FALSE) {
           objbis <- data.frame(name = nom, codeInsee = codeInsee, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, score = score, stringsAsFactors = FALSE)
           identity <- rbind(identity,objbis)
         }
+      }
       return(identity)
     }
   } else {
     print("Bad API request : your input may not be an actual city name.")
   }
 }
-
 
