@@ -19,9 +19,10 @@ ComByReg <- function(codeRegion, postal=FALSE) {
     url <- paste0("https://geo.api.gouv.fr/communes?codeRegion=", codeRegion, "&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
   } else {
     url <- paste0("https://geo.api.gouv.fr/communes?codeRegion=", codeRegion, "&fields=nom,code,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
-  }  ville <- GET(url)
-  if (ville$status_code == 200){
-    content <- rjson::fromJSON(rawToChar(ville$content)) 
+  }
+  reg <- GET(url)
+  if (reg$status_code == 200){
+    content <- rjson::fromJSON(rawToChar(reg$content)) 
     if(length(content) == 0) {
       print("No Content for that code : your input may not be an actual INSEE code")
     } else {
@@ -85,4 +86,6 @@ ComByReg <- function(codeRegion, postal=FALSE) {
     print("Bad API request : your input may not be an actual INSEE code")
   }
 }
+
+
 
