@@ -4,6 +4,7 @@
 #'
 #'Takes a department INSEE Code, returns a data.frame with the available values.
 #'@param codeDepartement a numeric vector with a department INSEE Code. 
+#'@param postal wether or not to include postal codes. Default is FALSE.  
 #'@return Returns a data.frame with names of the cities, INSEE codes, postal codes, INSEE department codes, INSEE region codes, population of the cities (approx), surface of the cities (in hectares), lat and long of the cities (WGS-84). 
 #'@export
 #'@note If you don't know the INSEE code of the department you're looking for, you can find it by using the \code{\link{DepByName}} function.
@@ -14,7 +15,11 @@ ComByDep <- function(codeDepartement) {
   if(nchar(codeDepartement) == 1) {
     codeDepartement <- paste0("0", codeDepartement)
   }
-  url <- paste0("https://geo.api.gouv.fr/communes?codeDepartement=", codeDepartement, "&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
+  if(postal){
+    url <- paste0("https://geo.api.gouv.fr/communes?codeDepartement=", codeDepartement, "&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
+  } else {
+    url <- paste0("https://geo.api.gouv.fr/communes?codeDepartement=", codeDepartement, "&fields=nom,code,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
+  }  
   ville <- GET(url)
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
@@ -67,8 +72,13 @@ ComByDep <- function(codeDepartement) {
         } else {
           population <- obj$population
         }
-        objbis <- data.frame(name = nom, codeInsee = codeInsee, codesPostaux = codesPostaux, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
-        identity <- rbind(identity,objbis)
+        if(postal){
+          objbis <- data.frame(name = nom, codeInsee = codeInsee, codesPostaux = codesPostaux, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
+          identity <- rbind(identity,objbis)
+        } else {
+          objbis <- data.frame(name = nom, codeInsee = codeInsee, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
+          identity <- rbind(identity,objbis)
+        }
       }
       return(identity)
     }
