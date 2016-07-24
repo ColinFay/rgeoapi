@@ -4,10 +4,12 @@
 \alias{ComByReg}
 \title{Get Cities by Region}
 \usage{
-ComByReg(codeRegion)
+ComByReg(codeRegion, postal = FALSE)
 }
 \arguments{
 \item{codeRegion}{a numeric vector with a region INSEE code.}
+
+\item{postal}{wether or not to include postal codes. Default is FALSE.}
 }
 \value{
 Returns a data.frame with names of the cities, INSEE codes, postal codes, INSEE department codes, INSEE region codes, population of the cities (approx), surface of the cities (in hectares), lat and long (WGS-84).
