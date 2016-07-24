@@ -16,9 +16,9 @@ ComByReg <- function(codeRegion, postal=FALSE) {
     codeRegion <- paste0("0", codeRegion)
   }
   if(postal){
-    url <- paste0("https://geo.api.gouv.fr/communes?codeDepartement=", codeDepartement, "&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
+    url <- paste0("https://geo.api.gouv.fr/communes?codeRegion=", codeRegion, "&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
   } else {
-    url <- paste0("https://geo.api.gouv.fr/communes?codeDepartement=", codeDepartement, "&fields=nom,code,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
+    url <- paste0("https://geo.api.gouv.fr/communes?codeRegion=", codeRegion, "&fields=nom,code,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre")
   }  ville <- GET(url)
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
