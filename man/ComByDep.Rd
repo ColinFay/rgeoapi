@@ -4,10 +4,12 @@
 \alias{ComByDep}
 \title{Get Cities by Department}
 \usage{
-ComByDep(codeDepartement)
+ComByDep(codeDepartement, postal = FALSE)
 }
 \arguments{
 \item{codeDepartement}{a numeric vector with a department INSEE Code.}
+
+\item{postal}{wether or not to include postal codes. Default is FALSE.}
 }
 \value{
 Returns a data.frame with names of the cities, INSEE codes, postal codes, INSEE department codes, INSEE region codes, population of the cities (approx), surface of the cities (in hectares), lat and long of the cities (WGS-84).
