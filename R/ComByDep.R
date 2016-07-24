@@ -11,7 +11,7 @@
 #'@examples
 #'ComByDep(35) 
 
-ComByDep <- function(codeDepartement) {
+ComByDep <- function(codeDepartement, postal=FALSE) {
   if(nchar(codeDepartement) == 1) {
     codeDepartement <- paste0("0", codeDepartement)
   }
