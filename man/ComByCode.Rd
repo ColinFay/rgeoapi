@@ -4,10 +4,12 @@
 \alias{ComByCode}
 \title{Get City by INSEE Code}
 \usage{
-ComByCode(codeInsee)
+ComByCode(codeInsee, postal = FALSE)
 }
 \arguments{
 \item{codeInsee}{numeric vector with an INSEE code.}
+
+\item{postal}{wether or not to include postal codes. Default is FALSE.}
 }
 \value{
 Returns a data.frame with names, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
@@ -22,10 +24,8 @@ Takes an INSEE Code, returns a data.frame with the available values.
 If you don't know the INSEE code of the city you're looking for, you can find it by using the \code{\link{ComByName}} function.
 }
 \examples{
-ComByCode(codeInsee = 88160) 
+ComByCode(codeInsee = 29019) 
 ComByCode(codeInsee = 31555)
-library(plyr)
-ldply(c("88160", "60057"), ComByCode)
 ComByCode(codeInsee = ComByName("Rennes")[1,"codeInsee"])
 }
 

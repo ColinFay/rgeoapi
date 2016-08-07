@@ -24,6 +24,6 @@ Takes a region INSEE ode, returns a data.frame with the available values.
 If you don't know the INSEE code of the region you're looking for, you can find it by using the \code{\link{RegByName}} function.
 }
 \examples{
-ComByReg(53) 
+ComByReg(codeRegion = 53) 
 }
 

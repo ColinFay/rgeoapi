@@ -22,6 +22,6 @@ Takes an INSEE Code, returns a data.frame with the available values.
 If you don't know the INSEE code of the department you're looking for, you can find it by using the \code{\link{DepByName}} function.
 }
 \examples{
-DepByCode(35)
+DepByCode(codeDepartement = 35)
 }
 

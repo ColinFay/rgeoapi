@@ -23,9 +23,8 @@ Get informations about a french city by its name (partial matches possible). Ple
 Takes a the name of a French city, returns a data.frame with the available values. Partial matches are possible. In that case, typographic pertinence scores are given, and can be weighted by population with the "boost" argument.
 }
 \examples{
-ComByName("Brest")
+ComByName(nom = "Brest")
 ComByName("Vitré", boost = TRUE)
-ComByName("Rennes", postal = TRUE)
 ComByName("Lo")
 }
 

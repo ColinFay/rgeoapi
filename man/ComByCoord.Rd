@@ -4,12 +4,14 @@
 \alias{ComByCoord}
 \title{Get City by Coordinates}
 \usage{
-ComByCoord(lat, lon)
+ComByCoord(lat, lon, postal = FALSE)
 }
 \arguments{
 \item{lat}{a character string with latitude (WGS-84)}
 
 \item{lon}{a character string with longitude (WGS-84)}
+
+\item{postal}{wether or not to include postal codes. Default is FALSE.}
 }
 \value{
 Returns a data.frame with name, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
