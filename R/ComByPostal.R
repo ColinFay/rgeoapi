@@ -11,6 +11,16 @@
 #'ComByPostal(29000)
 
 ComByPostal <- function(codePostal) {
+  . <- NULL 
+  default <- data.frame(name = vector("character"), 
+                        codeInsee = vector("character"),
+                        codesPostaux = vector("character"),
+                        codeDepartement = vector("character"),
+                        codeRegion = vector("character"),
+                        population = vector("character"),
+                        surface  = vector("character"),
+                        lat  = vector("character"),
+                        long = vector("character"))
   if(nchar(codePostal) == 4) {
     codePostal <- paste0("0", codePostal)
   }
@@ -19,61 +29,26 @@ ComByPostal <- function(codePostal) {
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
     if(length(content) == 0) {
-      print("No Content for that Postal Code : your input may not be an actual postal code")
+      warning("No Content for that code : your input may not be an actual postal code (was ", codePostal,")")
+      identity <- default
     } else {
-      identity <- data.frame()
-      for(i in 1:length(content)) {
-        obj <- content[[i]]
-        if(is.null(obj$nom)) {
-          nom <- NA
-        } else {
-          nom <- obj$nom
-        }
-        if(is.null(obj$code)) {
-          codeInsee <- NA
-        } else {
-          codeInsee <- obj$code
-        }
-        if(is.null(obj$codesPostaux)) {
-          codesPostaux <- NA
-        } else {
-          codesPostaux <- obj$codesPostaux
-        }
-        if(is.null(obj$surface)) {
-          surface <- NA
-        } else {
-          surface <- obj$surface
-        }
-        if(is.null(obj$centre)) {
-          lat <- NA
-          long <- NA
-        } else {
-          coord <- obj$centre$coordinates
-          lat <- coord[2]
-          long <- coord[1]
-        }
-        if(is.null(obj$codeDepartement)) {
-          codeDepartement <- NA
-        } else {
-          codeDepartement <- obj$codeDepartement
-        }
-        if(is.null(obj$codeRegion)) {
-          codeRegion <- NA
-        } else {
-          codeRegion <- obj$codeRegion
-        }
-        if(is.null(obj$population)) {
-          population <- NA
-        } else {
-          population <- obj$population
-        }
-        objbis <- data.frame(name = nom, codeInsee = codeInsee, codesPostaux = codesPostaux, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, stringsAsFactors = FALSE)
-        identity <- rbind(identity,objbis)
-      }
-      return(identity)
+      identity <- lapply(content, function(obj){
+        data.frame(name = obj$nom %||% NA, 
+                   codeInsee = obj$code %||% NA,
+                   codesPostaux = obj$codesPostaux %||% NA,
+                   codeDepartement = obj$codeDepartement %||% NA,
+                   codeRegion = obj$codeRegion %||% NA,
+                   population = obj$population %||% NA,
+                   surface  = obj$surface %||% NA,
+                   lat  = obj$centre$coordinates [2] %||% NA,
+                   long = obj$centre$coordinates [1] %||% NA,
+                   stringsAsFactors = FALSE)
+      }) %>% do.call(rbind, .)  
     }
+    return(identity)
   } else {
-    print("Bad API request : your input may not be an actual postal code")
+    warning("Bad API request : your input may not be an actual postal code (was ", codePostal,")")
+    identity <- default
+    return(identity)
   }
 }
-

@@ -11,6 +11,10 @@
 #'DepByReg(53)
 
 DepByReg <- function(codeRegion) {
+  . <- NULL 
+  default <- data.frame(name = vector("character"), 
+                        codeInsee = vector("character"),
+                        codeRegion = vector("character"))
   if(nchar(codeRegion) == 1) {
     codeRegion <- paste0("0", codeRegion)
   }
@@ -19,32 +23,20 @@ DepByReg <- function(codeRegion) {
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
     if(length(content) == 0) {
-      print("No Content for that INSEE code : your input may not be an actual INSEE code")
+      warning("No Content for that INSEE code : your input may not be an actual INSEE code (was ", codeRegion,")")
+      identity <- default
     } else {
-      identity <- data.frame()
-      for(i in 1:length(content)) {
-        obj <- content[[i]]
-        if(is.null(obj$nom)) {
-          nom <- NA
-        } else {
-          nom <- obj$nom
-        }
-        if(is.null(obj$code)) {
-          codeInsee <- NA
-        } else {
-          codeInsee <- obj$code
-        }
-        if(is.null(obj$codeRegion)) {
-          codeRegion <- NA
-        } else {
-          codeRegion <- obj$codeRegion
-        }
-        objbis <- data.frame(name = nom, codeInsee = codeInsee, codeRegion = codeRegion, stringsAsFactors = FALSE)
-        identity <- rbind(identity,objbis)
-      }
-      return(identity)
+      identity <- lapply(content, function(obj){
+        data.frame(name = obj$nom %||% NA, 
+                   codeInsee = obj$code %||% NA, 
+                   codeRegion = obj$codeRegion %||% NA, 
+                   stringsAsFactors = FALSE)
+      }) %>% do.call(rbind, .)
     }
+    return(identity)
   } else {
-    print("Bad API request : your input may not be an actual INSEE code")
+    warning("Bad API request : your input may not be an actual INSEE code (was ", codeRegion,")")
+    identity <- default
+    return(identity)
   }
 }

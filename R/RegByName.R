@@ -7,44 +7,35 @@
 #'@return Returns a data.frame with name, INSEE code, and typographic pertinence score for the request. 
 #'@export 
 #'@examples
-#'@examples
 #'RegByName("Bretagne")
 #'RegByName("M")
 
 RegByName <- function(nom) {
+  . <- NULL 
+  default <- data.frame(name = vector("character"), 
+                        codeInsee = vector("character"),
+                        codeRegion = vector("character"))
   nom <- chartr("éèëêÉÈËÊàÀçÇôoœoöÔOŒOÖuûùüúUÛÙÜÚîïÎÏ", "eeeeEEEEaAcCoooooOOOOOuuuuuUUUUUIIII", nom)
   url <- paste0("https://geo.api.gouv.fr/regions?nom=", nom, "&fields=nom,code")
   ville <- GET(url)
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
     if(length(content) == 0) {
-      print("No content for that name : your input may not be an actual region name.")
+      warning("No Content for that name : your input may not be an name (was ", nom,")")
+      identity <- default
     } else {
-      identity <- data.frame()
-      for(i in 1:length(content)) {
-        obj <- content[[i]]
-        if(is.null(obj$nom)) {
-          nom <- NA
-        } else {
-          nom <- obj$nom
-        }
-        if(is.null(obj$code)) {
-          codeInsee <- NA
-        } else {
-          codeInsee <- obj$code
-        }
-        if(is.null(obj["_score"])) {
-          score <- NA
-        } else {
-          score <- obj["_score"]
-        }
-        objbis <- data.frame(name = nom, codeInsee = codeInsee,score = score, stringsAsFactors = FALSE)
-        identity <- rbind(identity,objbis)
-      }
-      return(identity)
+      identity <- lapply(content, function(obj){
+        data.frame(name = obj$nom %||% NA, 
+                   codeInsee = obj$code %||% NA, 
+                   score = score <- obj["_score"] %||% NA,
+                   stringsAsFactors = FALSE)
+      }) %>% do.call(rbind, .)
     }
+    return(identity)
   } else {
-    print("Bad API request : your input may not be an actual region name.")
+    warning("Bad API request : your input may not be an actual name (was ", nom,")")
+    identity <- default
+    return(identity)
   }
 }
 

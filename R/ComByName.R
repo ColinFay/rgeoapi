@@ -9,11 +9,33 @@
 #'@return Returns a data.frame with name(s), INSEE code(s), postal code(s), INSEE department code(s), INSEE region code(s), population (approx), surface(s) (in hectares), lat and long (WGS-84).  
 #'@export
 #'@examples
-#'ComByName("Brest")
+#'ComByName(nom = "Brest")
 #'ComByName("Vitré", boost = TRUE)
 #'ComByName("Lo")
 
 ComByName <- function(nom, boost = FALSE, postal = FALSE) {
+  . <- NULL 
+  if(postal){
+    default <- data.frame(name = vector("character"), 
+                          codeInsee = vector("character"),
+                          codesPostaux = vector("character"),
+                          codeDepartement = vector("character"),
+                          codeRegion = vector("character"),
+                          population = vector("character"),
+                          surface  = vector("character"),
+                          lat  = vector("character"),
+                          long = vector("character"), 
+                          score = vector("character"))
+  } else {
+    default <- data.frame(name = vector("character"), 
+                          codeInsee = vector("character"),
+                          codeDepartement = vector("character"),
+                          codeRegion = vector("character"),
+                          population = vector("character"),
+                          surface  = vector("character"),
+                          lat  = vector("character"),
+                          long = vector("character"))
+  }
   nom <- chartr("éèëêÉÈËÊàÀçÇôoœoöÔOŒOÖuûùüúUÛÙÜÚîïÎÏ", "eeeeEEEEaAcCoooooOOOOOuuuuuUUUUUIIII", nom)
   if(postal){
     requete <- "nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre"
@@ -29,71 +51,42 @@ ComByName <- function(nom, boost = FALSE, postal = FALSE) {
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
     if(length(content) == 0) {
-      print("No content for that name : your input may not be an actual city name.")
+      warning("No Content for that name : your input may not be an actual name (was ", nom,")")
+      identity <- default
     } else {
-      identity <- data.frame()
-      for(i in 1:length(content)) {
-        obj <- content[[i]]
-        if(is.null(obj$nom)) {
-          nom <- NA
-        } else {
-          nom <- obj$nom
-        }
-        if(is.null(obj$code)) {
-          codeInsee <- NA
-        } else {
-          codeInsee <- obj$code
-        }
-        if(is.null(obj$codesPostaux)) {
-          codesPostaux <- NA
-        } else {
-          codesPostaux <- obj$codesPostaux
-        }
-        if(is.null(obj$surface)) {
-          surface <- NA
-        } else {
-          surface <- obj$surface
-        }
-        if(is.null(obj$centre)) {
-          lat <- NA
-          long <- NA
-        } else {
-          coord <- obj$centre$coordinates
-          lat <- coord[2]
-          long <- coord[1]
-        }
-        if(is.null(obj$codeDepartement)) {
-          codeDepartement <- NA
-        } else {
-          codeDepartement <- obj$codeDepartement
-        }
-        if(is.null(obj$codeRegion)) {
-          codeRegion <- NA
-        } else {
-          codeRegion <- obj$codeRegion
-        }
-        if(is.null(obj$population)) {
-          population <- NA
-        } else {
-          population <- obj$population
-        }
-        if(is.null(obj["_score"])) {
-          score <- NA
-        } else {
-          score <- obj["_score"]
-        }
-        if(postal){
-          objbis <- data.frame(name = nom, codeInsee = codeInsee, codesPostaux = codesPostaux, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, score = score, stringsAsFactors = FALSE)
-          identity <- rbind(identity,objbis)
-          } else {
-          objbis <- data.frame(name = nom, codeInsee = codeInsee, codeDepartement = codeDepartement, codeRegion = codeRegion, population = population, surface = surface, lat=lat, long=long, score = score, stringsAsFactors = FALSE)
-          identity <- rbind(identity,objbis)
-        }
+      if(postal){
+        identity <- lapply(content, function(obj){
+          data.frame(name = obj$nom %||% NA, 
+                     codeInsee = obj$code %||% NA,
+                     codesPostaux = obj$codesPostaux %||% NA,
+                     codeDepartement = obj$codeDepartement %||% NA,
+                     codeRegion = obj$codeRegion %||% NA,
+                     population = obj$population %||% NA,
+                     surface  = obj$surface %||% NA,
+                     lat  = obj$centre$coordinates [2] %||% NA,
+                     long = obj$centre$coordinates [1] %||% NA,
+                     score = obj$`_score` %||% NA,
+                     stringsAsFactors = FALSE)
+        }) %>% do.call(rbind, .)  
+      } else {
+        identity <- lapply(content, function(obj){
+          data.frame(name = obj$nom %||% NA, 
+                     codeInsee = obj$code %||% NA,
+                     codeDepartement = obj$codeDepartement %||% NA,
+                     codeRegion = obj$codeRegion %||% NA,
+                     population = obj$population %||% NA,
+                     surface  = obj$surface %||% NA,
+                     lat  = obj$centre$coordinates [2] %||% NA,
+                     long = obj$centre$coordinates [1] %||% NA,
+                     score = obj$`_score` %||% NA,
+                     stringsAsFactors = FALSE)
+        }) %>% do.call(rbind, .)  
       }
-      return(identity)
     }
+    return(identity)
   } else {
-    print("Bad API request : your input may not be an actual city name.")
+    warning("Bad API request : your input may not be an actual name (was ", nom,")")
+    identity <- default
+    return(identity)
   }
 }
-
