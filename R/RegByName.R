@@ -7,8 +7,8 @@
 #'@return Returns a data.frame with name, INSEE code, and typographic pertinence score for the request. 
 #'@export 
 #'@examples
-#'RegByName("Bretagne")
-#'RegByName("M")
+#'RegByName(nom = "Bretagne")
+#'RegByName(nom = "M")
 
 RegByName <- function(nom) {
   . <- NULL 
