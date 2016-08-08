@@ -10,8 +10,8 @@
 #'@export
 #'@examples
 #'ComByName(nom = "Brest")
-#'ComByName("Vitré", boost = TRUE)
-#'ComByName("Lo")
+#'ComByName(nom = "Vitré", boost = TRUE)
+#'ComByName(nom = "Lo", postal = TRUE)
 
 ComByName <- function(nom, boost = FALSE, postal = FALSE) {
   . <- NULL 
