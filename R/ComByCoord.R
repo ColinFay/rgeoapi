@@ -11,6 +11,7 @@
 #'@note If you don't know the coordinates of the city you're looking for, you can find it by using the \code{\link{ComByName}} function.
 #'@examples
 #'ComByCoord(lat = "48.11023", lon = "-1.678872") 
+#'ComByCoord(lat = "48.74313", lon = "-3.460337", postal = TRUE)
 
 ComByCoord <- function(lat, lon, postal=FALSE) {
   . <- NULL 
