@@ -7,7 +7,7 @@
 #'@return Returns a data.frame with name and region code of the region. 
 #'@export 
 #'@examples
-#'RegByCode(53)
+#'RegByCode(codeRegion = 53)
 
 RegByCode <- function(codeRegion) {
   . <- NULL 
