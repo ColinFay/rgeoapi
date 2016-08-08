@@ -7,8 +7,8 @@
 #'@return Returns a data.frame with name, INSEE code, and region code of the department. 
 #'@export 
 #'@examples
-#'DepByName("Ille-et-Vilaine")
-#'DepByName("mo")
+#'DepByName(nom = "Ille-et-Vilaine")
+#'DepByName(nom = "mo")
 
 DepByName <- function(nom) {
   . <- NULL 
