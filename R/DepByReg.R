@@ -8,7 +8,7 @@
 #'@export
 #'@note If you don't know the INSEE code of the region you're looking for, you can find it by using the \code{\link{RegByName}} function.
 #'@examples
-#'DepByReg(53)
+#'DepByReg(codeRegion = 53)
 
 DepByReg <- function(codeRegion) {
   . <- NULL 
