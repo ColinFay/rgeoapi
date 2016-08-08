@@ -8,7 +8,7 @@
 #'@export
 #'@note If you don't know the postal code of the city you're looking for, you can find it by using the \code{\link{ComByName}} function.
 #'@examples
-#'ComByPostal(29000)
+#'ComByPostal(codePostal = 29000)
 
 ComByPostal <- function(codePostal) {
   . <- NULL 
