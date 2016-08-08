@@ -9,7 +9,8 @@
 #'@export
 #'@note If you don't know the INSEE code of the department you're looking for, you can find it by using the \code{\link{DepByName}} function.
 #'@examples
-#'ComByDep(35) 
+#'ComByDep(codeDepartement = 35) 
+#'ComByDep(codeDepartement = 29, postal = TRUE)
 
 ComByDep <- function(codeDepartement, postal=FALSE) {
   . <- NULL 
