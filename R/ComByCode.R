@@ -13,7 +13,7 @@
 #'@note If you don't know the INSEE code of the city you're looking for, you can find it by using the \code{\link{ComByName}} function.
 #'@examples
 #' ComByCode(codeInsee = 29019) 
-#' ComByCode(codeInsee = 31555)
+#' ComByCode(codeInsee = 31555, postal = TRUE)
 #' ComByCode(codeInsee = ComByName("Rennes")[1,"codeInsee"])
 
 ComByCode <- function(codeInsee, postal = FALSE) {
