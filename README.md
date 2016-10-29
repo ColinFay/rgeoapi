@@ -1,9 +1,9 @@
 # rgeoapi
-This package requests informations from the french GéoAPI inside R — https://api.gouv.fr/api/geoapi.html
+This package requests informations from the french GéoAPI inside R — https://api.gouv.fr/explorer/geoapi/
 
 ##GeoAPI 
 
-Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GéoAPI](https://api.gouv.fr/api/geoapi.html) API is a JSON interface designed to make requests on the french geographic database.
+Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GéoAPI](https://api.gouv.fr/explorer/geoapi/) API is a JSON interface designed to make requests on the french geographic database.
 
 rgeoapi was developped to facilitate your geographic projects by giving you access to these informations straight inside R. With `rgeoapi`, you can get any coordinate, size and population of a french city, to be used in your maps. 
 
