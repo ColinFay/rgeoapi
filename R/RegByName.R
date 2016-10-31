@@ -1,6 +1,6 @@
 #'Get Region by Name
 #'
-#'Get informations about a french region by its name. Please note that this package works only with french regions.
+#'Get informations about a French region by its name. Please note that this package works only with French regions.
 #'
 #'Takes a name, returns a data.frame with the available values.
 #'@param nom a character string with the name of the department. Partial matches are possible. In that case, typographic pertinence scores are given.
@@ -15,7 +15,6 @@ RegByName <- function(nom) {
   default <- data.frame(name = vector("character"), 
                         codeInsee = vector("character"),
                         codeRegion = vector("character"))
-  nom <- chartr("éèëêÉÈËÊàÀçÇôoœoöÔOŒOÖuûùüúUÛÙÜÚîïÎÏ", "eeeeEEEEaAcCoooooOOOOOuuuuuUUUUUIIII", nom)
   url <- paste0("https://geo.api.gouv.fr/regions?nom=", nom, "&fields=nom,code")
   ville <- GET(url)
   if (ville$status_code == 200){
@@ -30,6 +29,9 @@ RegByName <- function(nom) {
                    score = score <- obj["_score"] %||% NA,
                    stringsAsFactors = FALSE)
       }) %>% do.call(rbind, .)
+    }
+    if(length(showNonASCII(nom)) != 0){
+      warning("Your name '", nom, "' contains non ASCII character, this might impact the accuracy of your result. Please use only ASCII characters in your function call.")
     }
     return(identity)
   } else {

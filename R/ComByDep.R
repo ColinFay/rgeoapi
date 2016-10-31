@@ -1,6 +1,6 @@
 #'Get Cities by Department 
 #'
-#'Get informations about all the cities in a french department by its INSEE Code. Please note that this package works only with french cities.
+#'Get informations about all the cities in a French department by its INSEE Code. Please note that this package works only with French cities.
 #'
 #'Takes a department INSEE Code, returns a data.frame with the available values.
 #'@param codeDepartement a numeric vector with a department INSEE Code. 

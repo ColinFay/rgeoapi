@@ -1,6 +1,6 @@
 #'Get Region by INSEE Code
 #'
-#'Get informations about a french region by its INSEE code. Please note that this package works only with french regions.
+#'Get informations about a French region by its INSEE code. Please note that this package works only with French regions.
 #'
 #'Takes an INSEE code, returns a data.frame with the available values.
 #'@param codeRegion a numeric vector with an INSEE code.

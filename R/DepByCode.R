@@ -1,6 +1,6 @@
 #'Get Department by INSEE Code
 #'
-#'Get informations about a french Department by its INSEE Code. Please note that this package works only with french Department.
+#'Get informations about a French Department by its INSEE Code. Please note that this package works only with French Department.
 #'
 #'Takes an INSEE Code, returns a data.frame with the available values.
 #'@param codeDepartement a numeric vector with an INSEE Code.

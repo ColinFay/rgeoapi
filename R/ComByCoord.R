@@ -1,6 +1,6 @@
 #'Get City by Coordinates 
 #'
-#'Get informations about a french city by its Coordinates (WGS-84). Please note that this package works only with french cities.
+#'Get informations about a French city by its Coordinates (WGS-84). Please note that this package works only with French cities.
 #'
 #'Takes the latitude and longitude of a city, returns a data.frame with the available values.
 #'@param lat a character string with latitude (WGS-84) 

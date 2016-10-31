@@ -1,6 +1,6 @@
 #'Get City by Postal Code
 #'
-#'Get informations about a french city by its INSEE Code. Please note that this package works only with french cities.
+#'Get informations about a French city by its INSEE Code. Please note that this package works only with French cities.
 #'
 #'Takes a postal code, returns a data.frame with the available values.
 #'@param codePostal a numeric vector with a postal code.

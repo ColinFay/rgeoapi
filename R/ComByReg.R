@@ -1,6 +1,6 @@
 #'Get Cities by Region 
 #'
-#'Get informations about all the cities in a french region by its INSEE code. Please note that this package works only with french cities.
+#'Get informations about all the cities in a French region by its INSEE code. Please note that this package works only with French cities.
 #'
 #'Takes a region INSEE ode, returns a data.frame with the available values.
 #'@param codeRegion a numeric vector with a region INSEE code. 

@@ -1,16 +1,16 @@
 #'Get City by Name
 #'
-#'Get informations about a french city by its name (partial matches possible). Please note that this package works only with french cities.
+#'Get informations about a French city by its name (partial matches possible). Please note that this package works only with French cities.
 #'
 #'Takes a the name of a French city, returns a data.frame with the available values. Partial matches are possible. In that case, typographic pertinence scores are given, and can be weighted by population with the "boost" argument.
-#'@param nom a character string with the name of the city. 
+#'@param nom a character string with the name of the city, in full ASCII character. 
 #'@param boost a TRUE or FALSE. Default is FALSE. If TRUE, typographic pertinence score will be weighted by population. 
 #'@param postal wether or not to include postal codes. Default is FALSE.  
 #'@return Returns a data.frame with name(s), INSEE code(s), postal code(s), INSEE department code(s), INSEE region code(s), population (approx), surface(s) (in hectares), lat and long (WGS-84).  
 #'@export
 #'@examples
 #'ComByName(nom = "Brest")
-#'ComByName(nom = "Vitré", boost = TRUE)
+#'ComByName(nom = "Rennes", boost = TRUE)
 #'ComByName(nom = "Lo", postal = TRUE)
 
 ComByName <- function(nom, boost = FALSE, postal = FALSE) {
@@ -36,7 +36,6 @@ ComByName <- function(nom, boost = FALSE, postal = FALSE) {
                           lat  = vector("character"),
                           long = vector("character"))
   }
-  nom <- chartr("éèëêÉÈËÊàÀçÇôoœoöÔOŒOÖuûùüúUÛÙÜÚîïÎÏ", "eeeeEEEEaAcCoooooOOOOOuuuuuUUUUUIIII", nom)
   if(postal){
     requete <- "nom,code,codesPostaux,codeDepartement,codeRegion,population,centre,surface&format=json&geometry=centre"
   } else {
@@ -44,9 +43,9 @@ ComByName <- function(nom, boost = FALSE, postal = FALSE) {
   }
   if(boost){
     url <- paste0("https://geo.api.gouv.fr/communes?nom=", nom, "&boost=population&fields=", requete)
-    } else {    
-      url <- paste0("https://geo.api.gouv.fr/communes?nom=", nom, "&fields=", requete)
-      }
+  } else {    
+    url <- paste0("https://geo.api.gouv.fr/communes?nom=", nom, "&fields=", requete)
+  }
   ville <- GET(url)
   if (ville$status_code == 200){
     content <- rjson::fromJSON(rawToChar(ville$content)) 
@@ -82,6 +81,9 @@ ComByName <- function(nom, boost = FALSE, postal = FALSE) {
                      stringsAsFactors = FALSE)
         }) %>% do.call(rbind, .)  
       }
+    }
+    if(length(showNonASCII(nom)) != 0){
+      warning("Your name '", nom, "' contains non ASCII character, this might impact the accuracy of your result. Please use only ASCII characters in your function call.")
     }
     return(identity)
   } else {

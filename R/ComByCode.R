@@ -1,6 +1,6 @@
 #'Get City by INSEE Code
 #'
-#'Get informations about a french city by its INSEE code. Please note that this package works only with french cities.
+#'Get informations about a French city by its INSEE code. Please note that this package works only with French cities.
 #'
 #'Takes an INSEE Code, returns a data.frame with the available values.
 #'@param codeInsee numeric vector with an INSEE code.
@@ -10,6 +10,7 @@
 #'@importFrom magrittr %>%
 #'@importFrom httr GET
 #'@importFrom rjson fromJSON
+#'@importFrom tools showNonASCII
 #'@note If you don't know the INSEE code of the city you're looking for, you can find it by using the \code{\link{ComByName}} function.
 #'@examples
 #' ComByCode(codeInsee = 29019) 

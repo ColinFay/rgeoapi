@@ -1,6 +1,6 @@
 #'Get Departments by Region 
 #'
-#'Get informations about all the departments in a french region by its INSEE code. Please note that this package works only with french departments.
+#'Get informations about all the departments in a French region by its INSEE code. Please note that this package works only with French departments.
 #'
 #'Takes a region INSEE code, returns a data.frame with the available values.
 #'@param codeRegion a numeric vector with an INSEE code.
