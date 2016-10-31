@@ -17,7 +17,7 @@ ComByCoord(lat, lon, postal = FALSE)
 Returns a data.frame with name, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
 }
 \description{
-Get informations about a french city by its Coordinates (WGS-84). Please note that this package works only with french cities.
+Get informations about a French city by its Coordinates (WGS-84). Please note that this package works only with French cities.
 }
 \details{
 Takes the latitude and longitude of a city, returns a data.frame with the available values.
@@ -27,5 +27,6 @@ If you don't know the coordinates of the city you're looking for, you can find i
 }
 \examples{
 ComByCoord(lat = "48.11023", lon = "-1.678872") 
+ComByCoord(lat = "48.74313", lon = "-3.460337", postal = TRUE)
 }
 

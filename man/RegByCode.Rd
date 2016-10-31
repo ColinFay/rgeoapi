@@ -13,12 +13,12 @@ RegByCode(codeRegion)
 Returns a data.frame with name and region code of the region.
 }
 \description{
-Get informations about a french region by its INSEE code. Please note that this package works only with french regions.
+Get informations about a French region by its INSEE code. Please note that this package works only with French regions.
 }
 \details{
 Takes an INSEE code, returns a data.frame with the available values.
 }
 \examples{
-RegByCode(53)
+RegByCode(codeRegion = 53)
 }
 

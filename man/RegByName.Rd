@@ -13,13 +13,13 @@ RegByName(nom)
 Returns a data.frame with name, INSEE code, and typographic pertinence score for the request.
 }
 \description{
-Get informations about a french region by its name. Please note that this package works only with french regions.
+Get informations about a French region by its name. Please note that this package works only with French regions.
 }
 \details{
 Takes a name, returns a data.frame with the available values.
 }
 \examples{
-RegByName("Bretagne")
-RegByName("M")
+RegByName(nom = "Bretagne")
+RegByName(nom = "M")
 }
 

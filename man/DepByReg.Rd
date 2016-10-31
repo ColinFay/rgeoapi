@@ -13,7 +13,7 @@ DepByReg(codeRegion)
 Returns a data.frame with departments names, INSEE codes, and region codes of the departments.
 }
 \description{
-Get informations about all the departments in a french region by its INSEE code. Please note that this package works only with french departments.
+Get informations about all the departments in a French region by its INSEE code. Please note that this package works only with French departments.
 }
 \details{
 Takes a region INSEE code, returns a data.frame with the available values.
@@ -22,6 +22,6 @@ Takes a region INSEE code, returns a data.frame with the available values.
 If you don't know the INSEE code of the region you're looking for, you can find it by using the \code{\link{RegByName}} function.
 }
 \examples{
-DepByReg(53)
+DepByReg(codeRegion = 53)
 }
 

@@ -15,7 +15,7 @@ ComByReg(codeRegion, postal = FALSE)
 Returns a data.frame with names of the cities, INSEE codes, postal codes, INSEE department codes, INSEE region codes, population of the cities (approx), surface of the cities (in hectares), lat and long (WGS-84).
 }
 \description{
-Get informations about all the cities in a french region by its INSEE code. Please note that this package works only with french cities.
+Get informations about all the cities in a French region by its INSEE code. Please note that this package works only with French cities.
 }
 \details{
 Takes a region INSEE ode, returns a data.frame with the available values.

@@ -15,7 +15,7 @@ ComByCode(codeInsee, postal = FALSE)
 Returns a data.frame with names, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
 }
 \description{
-Get informations about a french city by its INSEE code. Please note that this package works only with french cities.
+Get informations about a French city by its INSEE code. Please note that this package works only with French cities.
 }
 \details{
 Takes an INSEE Code, returns a data.frame with the available values.
@@ -25,7 +25,7 @@ If you don't know the INSEE code of the city you're looking for, you can find it
 }
 \examples{
 ComByCode(codeInsee = 29019) 
-ComByCode(codeInsee = 31555)
+ComByCode(codeInsee = 31555, postal = TRUE)
 ComByCode(codeInsee = ComByName("Rennes")[1,"codeInsee"])
 }
 

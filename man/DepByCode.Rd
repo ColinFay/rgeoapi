@@ -13,7 +13,7 @@ DepByCode(codeDepartement)
 Returns a data.frame with name, INSEE code, and region code of the department.
 }
 \description{
-Get informations about a french Department by its INSEE Code. Please note that this package works only with french Department.
+Get informations about a French Department by its INSEE Code. Please note that this package works only with French Department.
 }
 \details{
 Takes an INSEE Code, returns a data.frame with the available values.

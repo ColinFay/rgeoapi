@@ -15,7 +15,7 @@ ComByDep(codeDepartement, postal = FALSE)
 Returns a data.frame with names of the cities, INSEE codes, postal codes, INSEE department codes, INSEE region codes, population of the cities (approx), surface of the cities (in hectares), lat and long of the cities (WGS-84).
 }
 \description{
-Get informations about all the cities in a french department by its INSEE Code. Please note that this package works only with french cities.
+Get informations about all the cities in a French department by its INSEE Code. Please note that this package works only with French cities.
 }
 \details{
 Takes a department INSEE Code, returns a data.frame with the available values.
@@ -24,6 +24,7 @@ Takes a department INSEE Code, returns a data.frame with the available values.
 If you don't know the INSEE code of the department you're looking for, you can find it by using the \code{\link{DepByName}} function.
 }
 \examples{
-ComByDep(35) 
+ComByDep(codeDepartement = 35) 
+ComByDep(codeDepartement = 29, postal = TRUE)
 }
 

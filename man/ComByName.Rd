@@ -7,7 +7,7 @@
 ComByName(nom, boost = FALSE, postal = FALSE)
 }
 \arguments{
-\item{nom}{a character string with the name of the city.}
+\item{nom}{a character string with the name of the city, in full ASCII character.}
 
 \item{boost}{a TRUE or FALSE. Default is FALSE. If TRUE, typographic pertinence score will be weighted by population.}
 
@@ -17,14 +17,14 @@ ComByName(nom, boost = FALSE, postal = FALSE)
 Returns a data.frame with name(s), INSEE code(s), postal code(s), INSEE department code(s), INSEE region code(s), population (approx), surface(s) (in hectares), lat and long (WGS-84).
 }
 \description{
-Get informations about a french city by its name (partial matches possible). Please note that this package works only with french cities.
+Get informations about a French city by its name (partial matches possible). Please note that this package works only with French cities.
 }
 \details{
 Takes a the name of a French city, returns a data.frame with the available values. Partial matches are possible. In that case, typographic pertinence scores are given, and can be weighted by population with the "boost" argument.
 }
 \examples{
 ComByName(nom = "Brest")
-ComByName("Vitré", boost = TRUE)
-ComByName("Lo")
+ComByName(nom = "Rennes", boost = TRUE)
+ComByName(nom = "Lo", postal = TRUE)
 }
 

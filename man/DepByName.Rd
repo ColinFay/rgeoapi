@@ -13,13 +13,13 @@ DepByName(nom)
 Returns a data.frame with name, INSEE code, and region code of the department.
 }
 \description{
-Get informations about a french Department by its name. Please note that this package works only with french Department.
+Get informations about a French Department by its name. Please note that this package works only with French Department.
 }
 \details{
 Takes a department INSEE code, returns a data.frame with the available values. Partial matches are possible. In that case, typographic pertinence scores are given.
 }
 \examples{
-DepByName("Ille-et-Vilaine")
-DepByName("mo")
+DepByName(nom = "Ille-et-Vilaine")
+DepByName(nom = "mo")
 }
 
