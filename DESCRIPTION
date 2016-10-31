@@ -1,12 +1,14 @@
 Package: rgeoapi
 Type: Package
-Title: Get informations from https://api.gouv.fr/api/geoapi.html
+Title: Get Information from the GeoAPI
 Version: 1.1.0
-Date: 2016-07-20
+Date: 2016-10-30
 Author: Colin FAY
 Maintainer: Colin FAY <contact@colinfay.me>
-Description: This package is designed to get informations about french "Communes", "Departements" and "Regions" available on the GEOAPI.
-License: GPL-3
+Description: Provides access to information from 
+        <https://api.gouv.fr/explorer/geoapi/> about French 
+        "Communes", "Departements" and "Regions".
+License: GPL-3 
 LazyData: TRUE
-Imports: httr, rjson, magrittr
+Imports: httr, rjson, magrittr, tools
 RoxygenNote: 5.0.1

@@ -1,13 +1,15 @@
+rgeoapi is now on [CRAN](https://cran.r-project.org/web/packages/rgeoapi/)
+
 # rgeoapi
-This package requests informations from the french GéoAPI inside R — https://api.gouv.fr/explorer/geoapi/
+This package requests informations from the French GeoAPI inside R — https://api.gouv.fr/explorer/geoapi/
 
 ##GeoAPI 
 
-Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GéoAPI](https://api.gouv.fr/explorer/geoapi/) API is a JSON interface designed to make requests on the french geographic database.
+Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GeoAPI](https://api.gouv.fr/explorer/geoapi/) API is a JSON interface designed to make requests on the French geographic database.
 
-rgeoapi was developped to facilitate your geographic projects by giving you access to these informations straight inside R. With `rgeoapi`, you can get any coordinate, size and population of a french city, to be used in your maps. 
+rgeoapi was developped to facilitate your geographic projects by giving you access to these informations straight inside R. With `rgeoapi`, you can get any coordinate, size and population of a French city, to be used in your maps. 
 
-For an optimal compatibility, all the names (especially outputs) used in this package are the same as the ones used in the GéoAPI. Please note that this package works only with french cities.
+For an optimal compatibility, all the names (especially outputs) used in this package are the same as the ones used in the GeoAPI. Please note that this package works only with French cities.
 
 ##Install rgeoapi
 
@@ -45,10 +47,10 @@ The version 1.0.0 works with eleven functions. Which are :
 
 ##How the functions are constructed
 
-In the [GéoAPI](https://api.gouv.fr/api/geoapi.html), you can request for "Commune", "Département" or "Région". 
+In the [GeoAPI](https://api.gouv.fr/explorer/geoapi/), you can request for "Commune", "Département" or "Région". 
 All the functions are constructed using this terminology : AByB.
 
-* A being the output you need -- Com for "Commune" (refering to french cities), Dep for Département (for Department) and Reg for Région. 
+* A being the output you need -- Com for "Commune" (refering to French cities), Dep for Département (for Department) and Reg for Région. 
 
 * B being the request parameter -- Code for INSEE Code, Coord for Coordinates (WGS-84), Dep for Department, Name for name, Postal for Postal Code and Reg for Region.
 
@@ -81,5 +83,5 @@ RegByCode(53)
 
 ###French Tutorial & contact
 
-A french tutorial on [my website](http://colinfay.me/rgeoapi-v1/).
+A French tutorial on [my website](http://colinfay.me/rgeoapi-v1/).
 Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
