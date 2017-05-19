@@ -3,7 +3,7 @@ rgeoapi is now on [CRAN](https://cran.r-project.org/web/packages/rgeoapi/)
 # rgeoapi
 This package requests informations from the French GeoAPI inside R — https://api.gouv.fr/explorer/geoapi/
 
-##GeoAPI 
+## GeoAPI 
 
 Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GeoAPI](https://api.gouv.fr/explorer/geoapi/) API is a JSON interface designed to make requests on the French geographic database.
 
@@ -11,7 +11,7 @@ rgeoapi was developped to facilitate your geographic projects by giving you acce
 
 For an optimal compatibility, all the names (especially outputs) used in this package are the same as the ones used in the GeoAPI. Please note that this package works only with French cities.
 
-##Install rgeoapi
+## Install rgeoapi
 
 Install this package directly in R : 
 
@@ -19,7 +19,7 @@ Install this package directly in R :
 devtools::install_github("ColinFay/rgeoapi")
 ```
 
-##How rgeoapi works
+## How rgeoapi works
 
 The version 1.0.0 works with eleven functions. Which are :  
 
@@ -45,7 +45,7 @@ The version 1.0.0 works with eleven functions. Which are :
 
 * `RegByName` Get Region by Name
 
-##How the functions are constructed
+## How the functions are constructed
 
 In the [GeoAPI](https://api.gouv.fr/explorer/geoapi/), you can request for "Commune", "Département" or "Région". 
 All the functions are constructed using this terminology : AByB.
@@ -54,9 +54,9 @@ All the functions are constructed using this terminology : AByB.
 
 * B being the request parameter -- Code for INSEE Code, Coord for Coordinates (WGS-84), Dep for Department, Name for name, Postal for Postal Code and Reg for Region.
 
-##Some examples 
+## Some examples 
 
-###ComByCoord 
+### ComByCoord 
 
 Takes the latitude and longitude of a city, returns a data.frame with name, INSEE code, postal code, INSEE department code, INSEE region code, population (approx), surface (in hectares), lat and long (WGS-84).
 
@@ -64,7 +64,7 @@ Takes the latitude and longitude of a city, returns a data.frame with name, INSE
 ComByCoord(lat = "48.11023", lon = "-1.678872") 
 ```
 
-###DepByName 
+### DepByName 
 
 This function takes a character string with the name of the department, and returns a data.frame with name, INSEE code, and region code. Partial matches are possible. In that case, pertinence scores are given.
 
@@ -73,7 +73,7 @@ DepByName("morbihan")
 DepByName("Il")
 ```
 
-###RegByCode
+### RegByCode
 
 This function takes an INSEE Code, returns a data.frame with name and region code.
 
@@ -81,7 +81,7 @@ This function takes an INSEE Code, returns a data.frame with name and region cod
 RegByCode(53)
 ```
 
-###French Tutorial & contact
+### French Tutorial & contact
 
 A French tutorial on [my website](http://colinfay.me/rgeoapi-v1/).
 Questions and feedbacks [welcome](mailto:contact@colinfay.me) !
