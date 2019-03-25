@@ -1,11 +1,11 @@
 rgeoapi is now on [CRAN](https://cran.r-project.org/web/packages/rgeoapi/)
 
 # rgeoapi
-This package requests informations from the French GeoAPI inside R — https://api.gouv.fr/explorer/geoapi/
+This package requests informations from the French GeoAPI inside R — https://api.gouv.fr/api/api-geo.html
 
 ## GeoAPI 
 
-Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GeoAPI](https://api.gouv.fr/explorer/geoapi/) API is a JSON interface designed to make requests on the French geographic database.
+Developped by Etalab, with La Poste, l’INSEE and OpenStreetMap, the [GeoAPI](https://api.gouv.fr/api/api-geo.html) API is a JSON interface designed to make requests on the French geographic database.
 
 rgeoapi was developped to facilitate your geographic projects by giving you access to these informations straight inside R. With `rgeoapi`, you can get any coordinate, size and population of a French city, to be used in your maps. 
 
@@ -47,7 +47,7 @@ The version 1.0.0 works with eleven functions. Which are :
 
 ## How the functions are constructed
 
-In the [GeoAPI](https://api.gouv.fr/explorer/geoapi/), you can request for "Commune", "Département" or "Région". 
+In the [GeoAPI](https://api.gouv.fr/api/api-geo.html), you can request for "Commune", "Département" or "Région". 
 All the functions are constructed using this terminology : AByB.
 
 * A being the output you need -- Com for "Commune" (refering to French cities), Dep for Département (for Department) and Reg for Région. 
